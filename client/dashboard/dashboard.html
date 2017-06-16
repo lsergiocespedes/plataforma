@@ -102,7 +102,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{usuario.username}} <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                    <a href="/dashboard/perfil"><i class="fa fa-fw fa-user"></i> Perfil</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -129,20 +129,11 @@
               </div>
           </div>
           <!-- /.row -->
-          {{>contenidoDasboard}}
+          {{>Template.dynamic template=contentDasboard}}
       </div>
       <!-- /.container-fluid -->
   </div>
   <!-- /#page-wrapper -->
 
 </div>
-</template>
-<template name="contenidoDasboard">
-	{{#if isInRole 'estudiante'}}
-		{{>cursosEstudiante}}
-	{{else}}
-		{{#if isInRole 'facilitador' 'admin'}}
-			{{>cursosFacilitador}}
-		{{/if}}
-	{{/if}}
 </template>

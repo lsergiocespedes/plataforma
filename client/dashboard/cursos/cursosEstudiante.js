@@ -3,3 +3,7 @@ Template.cursosEstudiante.helpers({
 		return Cursos.find();
 	}
 });
+
+Template.cursosEstudiante.onRendered(function(){
+	Meteor.subscribe('cursos');
+});

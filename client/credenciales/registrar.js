@@ -26,10 +26,12 @@ Template.registrar.events({
 					if(err)
 						alert(err);
 					else
+						$('#ingresar').modal('hide');
+						$('body').removeClass('modal-open');
+						$('.modal-backdrop').remove();
 						FlowRouter.go("/dashboard");
 				});
 			}
 		});
-		$('.modal-backdrop').remove();
 	}
 });

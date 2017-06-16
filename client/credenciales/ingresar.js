@@ -10,9 +10,11 @@ Template.ingresar.events({
 				alert(error);
 			}
 			else{
+				$('#ingresar').modal('hide');
+				$('body').removeClass('modal-open');
+				$('.modal-backdrop').remove();
 				FlowRouter.go("/dashboard");
 			}
 		});
-		$('.modal-backdrop').remove();
 	}
 });
