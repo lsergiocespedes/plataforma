@@ -1,6 +1,6 @@
 <template name="cursosEstudiante">
-	<h2>Este es el estudiante</h2>
 	<div class="row">
+	{{#each cursosList}}
 		<div class="col-sm-6 col-md-3">
 	    <div class="thumbnail">
 	      <img src="images/curso.jpg" alt="Curso">
@@ -14,5 +14,6 @@
 	      </div>
 	    </div>
 	  </div>
+	{{/each}}
 	</div>
 </template>
