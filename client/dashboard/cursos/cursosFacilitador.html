@@ -1,8 +1,11 @@
 <template name="cursosFacilitador">
-	<button class="btn btn-success"><i class="fa fa-plus"></i> Agregar curso</button>
+	<button class="btn btn-success" id="btnAddCurso" data-toggle="modal" data-target="#modalAddCurso"><i class="fa fa-plus"></i> Agregar curso</button>
 	<br>
 	<br>
 	<div class="row">
+	{{#each cursosList}}
+		gagagag
+	{{/each}}
 		<div class="col-sm-6 col-md-3">
 	    <div class="thumbnail">
 	      <img src="images/curso.jpg" alt="Curso">
@@ -17,4 +20,5 @@
 	    </div>
 	  </div>
 	</div>
+	{{>agregarCurso}}
 </template>
