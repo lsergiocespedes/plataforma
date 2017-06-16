@@ -129,11 +129,20 @@
               </div>
           </div>
           <!-- /.row -->
-          {{>contenido}}
+          {{>contenidoDasboard}}
       </div>
       <!-- /.container-fluid -->
   </div>
   <!-- /#page-wrapper -->
 
 </div>
+</template>
+<template name="contenidoDasboard">
+	{{#if isInRole 'estudiante'}}
+		{{>cursosEstudiante}}
+	{{else}}
+		{{#if isInRole 'facilitador' 'admin'}}
+			{{>cursosFacilitador}}
+		{{/if}}
+	{{/if}}
 </template>
