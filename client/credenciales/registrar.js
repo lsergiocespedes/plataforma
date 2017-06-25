@@ -17,6 +17,8 @@ Template.registrar.events({
 				nombres: target.nombres.value,
 			} 
 		};
+		$("#ingresar").modal("hide");
+  	e.stopPropagation();
 		Accounts.createUser(usuario, function(error){
 			if(error){
 				alert(error);
@@ -26,9 +28,6 @@ Template.registrar.events({
 					if(err)
 						alert(err);
 					else
-						$('#ingresar').modal('hide');
-						$('body').removeClass('modal-open');
-						$('.modal-backdrop').remove();
 						FlowRouter.go("/dashboard");
 				});
 			}

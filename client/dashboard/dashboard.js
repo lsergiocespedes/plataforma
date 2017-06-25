@@ -4,13 +4,13 @@ Template.dashboard.helpers({
 	},
 	ready: function(){
 		return FlowRouter.subsReady('datosUsuario');
-	}
+	},
+	tituloHeader: 'Cursos'
 });
 Template.dashboard.events({
 	'click #linkSalir': function (e) {
 		e.preventDefault();
 		Meteor.logout();
 		FlowRouter.go("/");
-		$('.modal-backdrop').remove();
 	}
 });
