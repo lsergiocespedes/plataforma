@@ -97,7 +97,8 @@
                 </li>
             </ul>
         </li>
-        <li class="dropdown">
+        {{#if ready}}
+            <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{usuario.username}} <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
@@ -108,7 +109,10 @@
                     <a href="#" id="linkSalir"><i class="fa fa-fw fa-power-off"></i> Salir</a>
                 </li>
             </ul>
-        </li>
+            </li>
+        {{else}}
+            Cargando...
+        {{/if}}
     </ul>
     <!-- /.navbar-collapse -->
   </nav>
@@ -116,18 +120,8 @@
   <div id="page-wrapper">
       <div class="container-fluid">
           <!-- Page Heading -->
-          <div class="row">
-              <div class="col-lg-12">
-                  <ol class="breadcrumb">
-                      <li class="active">
-                          <i class="fa fa-television"></i> Cursos
-                      </li>
-                  </ol>
-                  <h2 class="page-header">{{tituloHeader}}</h2>
-              </div>
-          </div>
+          {{>Template.dynamic template=contentDasboard}}
           <!-- /.row -->
-         
       </div>
       <!-- /.container-fluid -->
   </div>

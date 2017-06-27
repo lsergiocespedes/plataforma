@@ -1,0 +1,5 @@
+<template name="cursos">
+	{{#if isInRole 'facilitador' 'admin'}}
+		{{>cursosFacilitador}}
+	{{/if}}
+</template>

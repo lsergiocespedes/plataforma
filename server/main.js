@@ -5,10 +5,25 @@ Meteor.startup(() => {
 	Meteor.publish('datosUsuario', function(){
 		return Meteor.users.find({_id: this.userId});
 	});
+	publishComposite('listaCursos', {
+		find(){
+			return Cursos.find();
+		},
+		children:[
+			{
+				find(curso){
+					return Meteor.users.find(
+						{_id: curso.autor}
+					);
+				}
+			}
+		]
+	});
 	/*---- Methods ----*/
 	Meteor.methods({
 		'crearCurso': function(curso){
-			Cursos.insert(curso);
+			var idCurso = Cursos.insert(curso);
+			return idCurso;
 		}
 	});
 });
