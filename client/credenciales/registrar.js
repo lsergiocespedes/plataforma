@@ -19,18 +19,17 @@ Template.registrar.events({
 		};
 		$("#ingresar").modal("hide");
   	e.stopPropagation();
-		Accounts.createUser(usuario, function(error){
+		var idUsuario = Accounts.createUser(usuario, function(error){
 			if(error){
 				alert(error);
 			}
-			else{
-				Meteor.loginWithPassword(usuario.username,usuario.password, function(err){
-					if(err)
-						alert(err);
-					else
-						FlowRouter.go("/dashboard");
-				});
-			}
+		});
+		Meteor.loginWithPassword(usuario.username,usuario.password, function(err){
+			if(err)
+				alert(err);
+			else
+				Meteor.call('rolUsuario', Meteor.userId());
+				FlowRouter.go("/dashboard");
 		});
 	}
 });

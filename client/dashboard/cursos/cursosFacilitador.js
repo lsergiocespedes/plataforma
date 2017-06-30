@@ -6,7 +6,6 @@ Template.cursosFacilitador.events({
 			titulo: target.titulo.value,
 			descripcion: target.descripcion.value,
 			inicio: target.inicio.value,
-			autor: Meteor.userId(),
 		}
 		Meteor.call('crearCurso', curso, function (error, result) {});
 	}
