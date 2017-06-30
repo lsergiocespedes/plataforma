@@ -14,13 +14,15 @@ var cursosSchema = new SimpleSchema({
 	},
 	inicio:{
 		type: Date
+	},
+	idImg:{
+		type: String
 	}
 });
 Cursos.attachSchema(cursosSchema);
 Files = new FilesCollection({
-  storagepath: 'E:/meteor/files_plataforma',
-  downloadRoute: 'E:/meteor/files_plataforma/download',
+  storagePath: '/meteor/files_plataforma',
+  downloadRoute: '/meteor/files_plataforma/download',
   collectionName: 'files',
   allowClientCode: false,
-  
 });
