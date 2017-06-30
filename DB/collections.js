@@ -1,3 +1,10 @@
+Files = new FilesCollection({
+  storagePath: '/meteor/files_plataforma',
+  downloadRoute: '/meteor/files_plataforma/download',
+  collectionName: 'files',
+  allowClientCode: false,
+});
+/*---Colleccion de Cursos---*/
 Cursos = new Mongo.Collection('cursos');
 var cursosSchema = new SimpleSchema({
 	titulo: {
@@ -20,9 +27,12 @@ var cursosSchema = new SimpleSchema({
 	}
 });
 Cursos.attachSchema(cursosSchema);
-Files = new FilesCollection({
-  storagePath: '/meteor/files_plataforma',
-  downloadRoute: '/meteor/files_plataforma/download',
-  collectionName: 'files',
-  allowClientCode: false,
-});
+/*---Collection inscripciones*/
+/*Inscripcion = new Mongo.Collection('inscripcion');
+
+var inscripcionSchema = new SimpleSchema({
+	idCurso: {
+		type: String
+	},
+	id
+});*/

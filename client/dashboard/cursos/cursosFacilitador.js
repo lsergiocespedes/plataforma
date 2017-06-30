@@ -30,6 +30,12 @@ Template.cursosFacilitador.helpers({
 	cursoAutor: function(){
 		return Meteor.users.findOne(this.autor);
 	},
+	creador: function(){
+		if (this.autor === Meteor.userId()){
+			return true;
+		}
+		return false;
+	},
 	imagen() {
     return Files.findOne(this.idImg);
   },
