@@ -3,7 +3,10 @@ import { Meteor } from 'meteor/meteor';
 Meteor.startup(() => {
 	/*---- Publicaciones ----*/
 	Meteor.publish('getArchivos', function(){
-		return Files.find().cursor;
+		return ImagenesCursos.find().cursor;
+	});
+	Meteor.publish('getVideos', function(){
+		return MaterialesCursos.find().cursor;
 	});
 	Meteor.publish('datosUsuario', function(){
 		return Meteor.users.find({_id: this.userId});
@@ -14,6 +17,7 @@ Meteor.startup(() => {
 	Meteor.publish('roles', function (){
 	  return Meteor.roles.find();
 	});
+	/*--- Lista de cursos --*/
 	publishComposite('listaCursos', {
 		find(){
 			return Cursos.find();
@@ -33,6 +37,10 @@ Meteor.startup(() => {
 				}
 			}
 		]
+	});
+	/*--- Curso con materiales y mensajes ---*/
+	Meteor.publish('materiales', function(idCurso){
+		return Materiales.find(idCurso: idCurso);
 	});
 	Meteor.publish('curso', function (idCurso) {
 		return Cursos.find({_id:idCurso});		
@@ -57,6 +65,9 @@ Meteor.startup(() => {
 		'crearCurso': function(curso){
 			var idCurso = Cursos.insert(curso);
 			return idCurso;
+		},
+		'eliminarCurso': function(idCurso){
+			Cursos.remove(idCurso);
 		},
 		'agregarInscripcion': function(idCurso){
 			Inscripciones.insert(idCurso);
