@@ -83,7 +83,33 @@ Meteor.startup(() => {
 		return {
 			find(){
 				return Preguntas.find({idCurso:idCurso});
+			},
+			children: [
+			{
+				find(pregunta){
+					return Meteor.users.find({_id:pregunta.idUsuario});
+				}
+			},
+
+			{
+				find(pregunta){
+					return VotosPreguntas.find({idPregunta:pregunta._id});
+				}
+			},
+
+			{
+				find(pregunta){
+					return Respuestas.find({idPregunta : pregunta._id});
+				},
+				children:[
+				{
+					find(respuesta, pregunta){
+						return Meteor.users.find({_id:respuesta.idUsuario});
+					}
+				}
+				]
 			}
+			]
 		}
 	});
 
@@ -134,6 +160,22 @@ Meteor.startup(() => {
 		/*------Modulo Preguntas ------*/
 		'insertarPregunta': function(pregunta){
 			Preguntas.insert(pregunta);
+		},
+		'votarPregunta': function(idPregunta){
+			VotosPreguntas.insert({
+				idPregunta: idPregunta,
+				idUsuario: this.userId,
+				createdAt: new Date(),
+			});
+		},
+		'cancelarVotacion': function(idPregunta){
+			VotosPreguntas.remove({$and:[
+				{idPregunta:idPregunta},
+				{idUsuario:this.userId}
+			]});
+		},
+		'insertarRespuesta': function(respuesta){
+			Respuestas.insert(respuesta);
 		}
 	});
 });
