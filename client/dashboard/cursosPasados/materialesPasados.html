@@ -7,18 +7,12 @@
 			<h3 class="text-center">{{titulo}}</h3>
 		</div>
 		<div class="col-md-6">
-			<video controls>
-				{{#if readyVideos}}
-					<source src='{{video.link}}' tipe="video/mp4">
-				{{else}}
-					Cargando...
-				{{/if}}
-			</video>
+			<h4 class="text-center"><a href="{{video.link}}" download> <i class="fa fa-download"></i> Descargar Video Principal</a></h4>
+			{{>archivosPasados idMaterial=_id}}
 		</div>
 		<div class="col-md-6 ">
 			{{>chatPasado salaChat=chatActivo idMaterial=_id}}
 		</div>
 	</div>
-	{{>archivosPasados idMaterial=_id}}
 	{{/each}}
 </template>

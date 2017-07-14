@@ -5,6 +5,13 @@ Template.chatPasado.helpers({
 	mensajeAutor: function(){
 		return Meteor.users.findOne(this.idUsuario);
 	},
+	creador: function(){
+		var usuario = Cursos.findOne({_id: FlowRouter.getParam('idCurso')}).autor;
+		if (Meteor.userId() == usuario) {
+			return true;
+		}
+		return false;
+	}
 });
 Template.chatPasado.events({
 	'click .btnEnviarDiscusion': function() {

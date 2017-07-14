@@ -14,7 +14,11 @@
   			<div class="panel-body">
   				<div class="row">
   					<div class="col-md-2">
-  						<img src="/images/user.jpg" alt="" class="img-circle">
+              {{#if avatarExiste}}
+                hahaha
+              {{else}}
+                <img src="/images/user.jpg" alt="" class="img-circle">
+              {{/if}}
   					</div>
   					<div class="col-md-10 list-group">
   						<ul>
@@ -42,9 +46,10 @@
                   {{datosUsuario.emails.[0].address}}
                 </li>
                 <li class="list-group-item">
-                  <form>
+                  <form id="avatar">
                     <label for="avatar">Cambiar imagen de perfil</label>
-                    <input type="file" name="avatar">
+                    <input type="file" name="avatar" class="form-control">
+                    <input type="submit" class="btn btn-success btn-block" value="Cambiar">
                   </form>
                 </li>
   						</ul>

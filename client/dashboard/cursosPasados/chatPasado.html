@@ -11,7 +11,9 @@
 			  	<strong>{{mensajeAutor.username}}</strong>
 			  	{{#if isInRole "facilitador"}}
 			  			{{#unless discusion}}
-			  				<button class="btn btn-success btn-xs pull-right btnEnviarDiscusion">Discusion {{discusion}}</button>
+			  				{{#if creador}}
+			  					<button class="btn btn-success btn-xs pull-right btnEnviarDiscusion">Discusion {{discusion}}</button>
+			  				{{/if}}
 			  			{{/unless}}			  
 			  	{{/if}}
 			  </p>
