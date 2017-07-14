@@ -7,6 +7,7 @@ Template.preguntas.events({
 			idCurso: FlowRouter.getParam('idCurso'),
 			idUsuario: Meteor.userId(),
 			texto: target.pregunta.value,
+			votos: 0,
 			createdAt: new Date()
 		};
 		Meteor.call('insertarPregunta', pregunta);

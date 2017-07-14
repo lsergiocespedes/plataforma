@@ -11,6 +11,17 @@ Template.respuestas.events({
 		}
 		Meteor.call('insertarRespuesta', respuesta);
 		target.respuesta.value = '';
+	},
+	'click .btnLikeAnswer': function(){
+		var votoRespuesta = {
+			idRespuesta : this._id,
+			idUsuario : Meteor.userId(),
+			createdAt : new Date(),
+		};
+		Meteor.call('insertarVotoRespuesta', votoRespuesta);
+	},
+	'click .btnNotLikeAnswer': function(){
+		Meteor.call('eliminarVotoRespuesta', this._id);
 	}
 });
 
@@ -24,5 +35,17 @@ Template.respuestas.helpers({
 	moment: function(fecha){
 		tiempo.set(moment(fecha).fromNow());
 		return tiempo.get();
+	},
+	votoResp: function(){
+		return VotosRespuestas.find({idRespuesta:this._id}).count();
+	},
+	votadoRespuesta:function(){
+		var voto = VotosRespuestas.find({$and:[
+			{idRespuesta:this._id},
+			{idUsuario:Meteor.userId()}
+		]}).count();
+		if(voto > 0)
+			return true;
+		return false;
 	}
 });

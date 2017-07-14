@@ -24,7 +24,11 @@
 						<p>
 							{{texto}}
 						</p>
-						<p class="text-right"><i class="fa fa-thumbs-o-up btnLikeAnswer"></i> 10</p>
+						{{#if votadoRespuesta}}
+							<p class="text-right"><i class="fa fa-thumbs-o-up btnNotLikeAnswer"></i> {{votoResp}}</p>
+						{{else}}
+							<p class="text-right"><i class="fa fa-thumbs-o-up btnLikeAnswer"></i> {{votoResp}}</p>
+						{{/if}}
 					</div>
 				</div>
 			</div>

@@ -157,6 +157,9 @@ var preguntasSchema = new SimpleSchema({
 	texto:{
 		type: String
 	},
+	votos:{
+		type: Number
+	},
 	createdAt: {
 		type: Date
 	}
@@ -200,3 +203,19 @@ var respuestasSchema = new SimpleSchema({
 	}
 });
 Respuestas.attachSchema(respuestasSchema);
+/***---------- Votos respuestas--------***/
+
+
+VotosRespuestas = new Mongo.Collection('votosRespuestas');
+
+var votosPreguntasSchema = new SimpleSchema({
+	idRespuesta : {
+		type: String
+	},
+	idUsuario: {
+		type: String
+	},
+	createdAt: {
+		type: Date
+	},
+});

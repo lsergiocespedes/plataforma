@@ -327,6 +327,10 @@ video{
     color: #2196f3;
     cursor: pointer;
 }
+.btnNotLikeAnswer{
+    color: #2196f3;
+    cursor: pointer;
+}
 /****/
 ::-webkit-scrollbar {
   width: 5px;

@@ -82,7 +82,7 @@ Meteor.startup(() => {
 	publishComposite('preguntas', function(idCurso){
 		return {
 			find(){
-				return Preguntas.find({idCurso:idCurso});
+				return Preguntas.find({idCurso:idCurso}, {$sort:{votos:1}});
 			},
 			children: [
 			{
@@ -105,6 +105,11 @@ Meteor.startup(() => {
 				{
 					find(respuesta, pregunta){
 						return Meteor.users.find({_id:respuesta.idUsuario});
+					}
+				},
+				{
+					find(respuesta, pregunta){
+						return VotosRespuestas.find({idRespuesta:respuesta._id});
 					}
 				}
 				]
@@ -167,15 +172,26 @@ Meteor.startup(() => {
 				idUsuario: this.userId,
 				createdAt: new Date(),
 			});
+			Preguntas.update(idPregunta, {$inc:{votos:1}});
 		},
 		'cancelarVotacion': function(idPregunta){
 			VotosPreguntas.remove({$and:[
 				{idPregunta:idPregunta},
 				{idUsuario:this.userId}
 			]});
+			Preguntas.update(idPregunta, {$inc:{votos : -1}});
 		},
 		'insertarRespuesta': function(respuesta){
 			Respuestas.insert(respuesta);
+		},
+		'insertarVotoRespuesta': function(votoRespuesta){
+			VotosRespuestas.insert(votoRespuesta);
+		},
+		'eliminarVotoRespuesta': function(idRespuesta){
+			VotosRespuestas.remove({$and:[
+				{idRespuesta : idRespuesta},
+				{idUsuario : Meteor.userId()}
+			]});		
 		}
 	});
 });
